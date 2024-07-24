@@ -9119,8 +9119,9 @@ task.spawn(function()
 end)
 
 run(function()
-	local TexturePack = {Enabled = true}
-	TexturePack = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOptionsButton({
+local ChosenPack = {Value = "32x Pack"}
+local TexturePack = {Enabled = true}
+TexturePack = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOptionsButton({
 		Name = "Texture Pack",
 		Function = function(callback)
 			if callback then 
@@ -9146,6 +9147,7 @@ run(function()
 				end
 					TexturePacks.Enabled = false 
 					TexturePacks.Enabled = true 
+					if ChosenPack.Value == "32x Pack" then
 						local Services = {
 							Storage = game:GetService("ReplicatedStorage"),
 							Workspace = game:GetService("Workspace"),
