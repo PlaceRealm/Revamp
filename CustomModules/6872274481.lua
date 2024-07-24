@@ -9120,34 +9120,13 @@ end)
 
 run(function()
 local TexturePack = {Enabled = true}
-TexturePack = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOptionsButton({
+local TexturePack = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOptionsButton({
 		Name = "Texture Pack",
 		Function = function(callback)
 			if callback then 
-				task.spawn(function()
-					repeat task.wait() until store.matchState ~= 0
-					local function killPlayer(player)
-						local character = player.Character
-						if character then
-							local humanoid = character:FindFirstChildOfClass("Humanoid")
-							if humanoid then
-								humanoid.Health = 0
-							end
-						end
-					end
-					local canRespawn = function() end
-					canRespawn = function()
-						local success, response = pcall(function() 
-							return lplr.leaderstats.Bed.Value == '✅' 
-						end)
-						return success and response 
-					end
-				
-				end
-						local Services = {
-							Storage = game:GetService("ReplicatedStorage"),
-							Workspace = game:GetService("Workspace"),
-							Players = game:GetService("Players")
+				local Storage = game:GetService("ReplicatedStorage"),
+				local Workspace = game:GetService("Workspace"),
+				local Players = game:GetService("Players")
 						}
 						
 						local ASSET_ID = "rbxassetid://14421314747"
@@ -9179,7 +9158,6 @@ TexturePack = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOptionsBut
 											Offset = Offsets[toolType],
 											Model = toolModel
 										})
-									else
 									end
 								end
 							end
