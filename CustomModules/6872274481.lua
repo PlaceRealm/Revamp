@@ -1667,7 +1667,7 @@ do
 	end)
 	local textlabel = Instance.new("TextLabel")
 	textlabel.Size = UDim2.new(1, 0, 0, 36)
-	textlabel.Text = "The current version of vape is no longer being maintained, join the discord (click the discord icon) to get updates on the latest release."
+	textlabel.Text = "hello :D - placeholder"
 	textlabel.BackgroundTransparency = 1
 	textlabel.ZIndex = 10
 	textlabel.TextStrokeTransparency = 0
