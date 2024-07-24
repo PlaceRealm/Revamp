@@ -9119,9 +9119,8 @@ task.spawn(function()
 end)
 
 run(function()
-local TexturePack = {Value = "32x Pack"}
 local TexturePack = {Enabled = true}
-TexturePack = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOptionsButton({
+local TexturePack = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOptionsButton({
 		Name = "Texture Pack",
 		Function = function(callback)
 			if callback then 
@@ -9145,9 +9144,6 @@ TexturePack = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOptionsBut
 					end
 				
 				end
-					TexturePacks.Enabled = false 
-					TexturePacks.Enabled = true 
-					if TexturePack.Value == "32x Pack" then
 						local Services = {
 							Storage = game:GetService("ReplicatedStorage"),
 							Workspace = game:GetService("Workspace"),
@@ -9222,8 +9218,9 @@ TexturePack = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOptionsBut
 										for _, child in pairs(playerTool:GetDescendants()) do
 											adjustAppearance(child)
 										end
-										attachModel(playerTool, toolData, CFrame.new(0.4, 0, -0.9))						
+										attachModel(playerTool, toolData, CFrame.new(0.4, 0, -0.9))
+					end
 				end)
 			end
 		end
-	})
+	
