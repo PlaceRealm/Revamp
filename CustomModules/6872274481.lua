@@ -9120,7 +9120,7 @@ end)
 
 run(function()
 local TexturePack = {Enabled = true}
-local TexturePack = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOptionsButton({
+TexturePack = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOptionsButton({
 		Name = "Texture Pack",
 		Function = function(callback)
 			if callback then 
@@ -9174,14 +9174,12 @@ local TexturePack = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOpti
 									local toolModel = asset:FindFirstChild(identifier)
 						
 									if toolModel then
-										--print("Found tool in initializeToolIndex:", identifier)
 										table.insert(ToolIndex, {
 											Name = identifier,
 											Offset = Offsets[toolType],
 											Model = toolModel
 										})
 									else
-										--warn("Model for " .. identifier .. " not found in initializeToolIndex!")
 									end
 								end
 							end
@@ -9221,6 +9219,3 @@ local TexturePack = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOpti
 										attachModel(playerTool, toolData, CFrame.new(0.4, 0, -0.9))
 					end
 				end)
-			end
-		end
-	
