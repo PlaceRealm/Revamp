@@ -9222,12 +9222,8 @@ TexturePack = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOptionsBut
 										for _, child in pairs(playerTool:GetDescendants()) do
 											adjustAppearance(child)
 										end
-										attachModel(playerTool, toolData, CFrame.new(0.4, 0, -0.9))
-												end
+										attachModel(playerTool, toolData, CFrame.new(0.4, 0, -0.9))						
 				end)
 			end
 		end
-        Function = function() end,
-    })
-end)
-					
+	})
