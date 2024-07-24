@@ -9119,7 +9119,7 @@ task.spawn(function()
 end)
 
 run(function()
-local ChosenPack = {Value = "32x Pack"}
+local TexturePack = {Value = "32x Pack"}
 local TexturePack = {Enabled = true}
 TexturePack = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOptionsButton({
 		Name = "Texture Pack",
@@ -9147,7 +9147,7 @@ TexturePack = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOptionsBut
 				end
 					TexturePacks.Enabled = false 
 					TexturePacks.Enabled = true 
-					if ChosenPack.Value == "32x Pack" then
+					if TexturePack.Value == "32x Pack" then
 						local Services = {
 							Storage = game:GetService("ReplicatedStorage"),
 							Workspace = game:GetService("Workspace"),
@@ -9223,14 +9223,11 @@ TexturePack = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOptionsBut
 											adjustAppearance(child)
 										end
 										attachModel(playerTool, toolData, CFrame.new(0.4, 0, -0.9))
-									end
-								end
-							end
-						end
-			
-	local Credits
-	Credits = TexturePack.CreateCredits({
-        Name = 'CreditsButtonInstance',
-        Credits = 'ErchoBg'
+												end
+				end)
+			end
+		end
+        Function = function() end,
+    })
 end)
 					
