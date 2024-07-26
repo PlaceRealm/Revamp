@@ -298,10 +298,6 @@ local World = GuiLibrary.CreateWindow({
 	Icon = "vape/assets/WorldIcon.png",
 	IconSize = 16
 })
-local Exploits = GuiLibrary.CreateWindow({
-	Name = "Exploits",
-	IconSize = 17	
-})
 local Friends = GuiLibrary.CreateWindow2({
 	Name = "Friends",
 	Icon = "vape/assets/FriendsIcon.png",
@@ -346,12 +342,6 @@ GUI.CreateButton({
 	Name = "World",
 	Function = function(callback) World.SetVisible(callback) end,
 	Icon = "vape/assets/WorldIcon.png",
-	IconSize = 16
-})
-GUI.CreateButton({
-	Name = "Exploits",
-	Function = function(callback) Exploits.SetVisible(callback) end,
-	Icon = "vape/assets/WorldIcon.png",							
 	IconSize = 16
 })
 GUI.CreateDivider("MISC")
