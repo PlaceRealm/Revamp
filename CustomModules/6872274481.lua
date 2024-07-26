@@ -3037,7 +3037,7 @@ run(function()
 	local killaurarealremote = bedwars.Client:Get(bedwars.AttackRemote).instance
 	local killauramethod = {Value = "Normal"}
 	local killauraothermethod = {Value = "Normal"}
-	local killauraanimmethod = {Value = "bestblock"}
+	local killauraanimmethod = {Value = "Normal"}
 	local killaurarange = {Value = 14}
 	local killauraangle = {Value = 360}
 	local killauratargets = {Value = 10}
@@ -3066,7 +3066,7 @@ run(function()
 	local oldViewmodelAnimation = function() end
 	local oldPlaySound = function() end
 	local originalArmC0 = nil
-	local killauracurrentanim = bestblock
+	local killauracurrentanim
 	local animationdelay = tick()
 
 	local function getStrength(plr)
