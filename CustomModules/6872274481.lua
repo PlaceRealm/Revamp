@@ -58,7 +58,7 @@ local store = {
 	},
 	whitelist = {
 		chatStrings1 = {helloimusinginhaler = "vape"},
-		chatStrings2 = {vape = "helloimusinginhaler"},
+		chatStrings2 = {vape = "helloiamskibidi"},
 		clientUsers = {},
 		oldChatFunctions = {}
 	},
@@ -3035,9 +3035,9 @@ run(function()
 	local killauratargetframe = {Players = {Enabled = false}}
 	local killaurasortmethod = {Value = "Distance"}
 	local killaurarealremote = bedwars.Client:Get(bedwars.AttackRemote).instance
-	local killauramethod = {Value = "PistonWareBlock"}
-	local killauraothermethod = {Value = "PistonWareBlock"}
-	local killauraanimmethod = {Value = "PistonWareBlock"}
+	local killauramethod = {Value = "Normal"}
+	local killauraothermethod = {Value = "Normal"}
+	local killauraanimmethod = {Value = "Normal"}
 	local killaurarange = {Value = 14}
 	local killauraangle = {Value = 360}
 	local killauratargets = {Value = 10}
