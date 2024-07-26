@@ -9283,3 +9283,87 @@ run(function()
 	})
 end)
 																																																																																																																			
+run(function()
+																																																								
+	local AmongUs = {Enabled = false}
+
+	local function camu(ent)
+		local asset = "http://www.roblox.com/asset/?id=6235963214"
+		local text = "http://www.roblox.com/asset/?id=6235963270"
+		local part = Instance.new("Part",ent.Character)
+		local mesh = Instance.new("SpecialMesh",part)
+		local weld = Instance.new("Weld",part)
+		part.Name = "amogus"
+		mesh.MeshId = asset
+		mesh.TextureId = text
+		part.CanCollide = false
+		mesh.Offset = Vector3.new(0,-0.3,0)
+		mesh.Scale = Vector3.new(0.11,0.11,0.11)
+		weld.Part0 = part
+		weld.Part1 = part.Parent.UpperTorso
+	end
+
+	AmongUs = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOptionsButton({
+		Name = "AmongUs",
+		Function = function(callback)
+			if callback then
+				RunLoops:BindToHeartbeat("amogus",function()
+					for i,v in pairs(game.Players:GetChildren()) do
+						if v.Character:FindFirstChild("Humanoid") ~= nil then
+							if v.Character.Humanoid.Health == 0 and v.Character:FindFirstChild("amogus") then
+								v.Character:FindFirstChild("amogus"):Destroy()
+							end
+							if v.Character.Humanoid ~= nil and (v.Character ~= nil and v.Character.HumanoidRootPart ~= nil and v.Character.Humanoid ~= nil and v.Character.Humanoid.Health ~= 0) then
+								for o,b in pairs(v.Character:GetChildren()) do
+									if b.Name == "SkibidiPing" then
+										return
+									elseif b:IsA("MeshPart") and b.Name ~= "amogus" then
+										b.Transparency = 1
+									elseif b:IsA("Accessory") and not b.Name:find("sword") and not b.Name:find("block") and not b.Name:find("pickaxe") and not b.Name:find("bow") and not b.Name:find("axe") and not b.Name:find("fireball") and not b.Name:find("cannon") and not b.Name:find("shears") then
+										b.Handle.Transparency = 1
+									end
+								end
+								if v.Character:FindFirstChild("amogus") == nil then
+									camu(v)
+								end
+							end
+						end
+					end
+				end)
+			else
+				RunLoops:UnbindFromHeartbeat("amogus")
+				for i,v in pairs(game.Players:GetChildren()) do
+					for o,b in pairs(v.Character:GetChildren()) do
+						if b.Name == "SkibidiPing" then
+							return
+						elseif b:IsA("MeshPart") then
+							b.Transparency = 0
+						elseif b:IsA("Accessory") then
+							b.Handle.Transparency = 0
+						end
+					end
+				end
+				lplr.Character:FindFirstChild("amogus"):Destroy()
+			end
+		end,
+		HoverText = "credits: qwertyui"
+	})
+end)
+
+run(function()
+	InfiniteJump = GuiLibrary.ObjectsThatCanBeSaved.BlatantWindow.Api.CreateOptionsButton({
+		Name = "InfiniteJump",
+		Function = function(callback)
+			if callback then
+
+			end
+		end
+	})
+	game:GetService("UserInputService").JumpRequest:Connect(function()
+		if not InfiniteJump.Enabled then return end
+		if lplr.Character and lplr.Character:FindFirstChildOfClass("Humanoid") then
+			local hum = lplr.Character:FindFirstChildOfClass("Humanoid")
+			hum:ChangeState("Jumping")
+		end
+	end)         
+end)
