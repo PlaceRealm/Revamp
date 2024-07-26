@@ -3037,7 +3037,7 @@ run(function()
 	local killaurarealremote = bedwars.Client:Get(bedwars.AttackRemote).instance
 	local killauramethod = {Value = "Normal"}
 	local killauraothermethod = {Value = "Normal"}
-	local killauraanimmethod = {Value = "Normal"}
+	local killauraanimmethod = {Value = "PistonWareBlock"}
 	local killaurarange = {Value = 14}
 	local killauraangle = {Value = 360}
 	local killauratargets = {Value = 10}
