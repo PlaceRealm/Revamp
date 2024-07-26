@@ -2011,7 +2011,7 @@ end)
 run(function() 
     local DupeExploit = {};
 	local ftick = 0
-    RichExploit = GuiLibrary.ObjectsThatCanBeSaved.UtilityWindow.Api.CreateOptionsButton({
+    RichExploit = GuiLibrary.ObjectsThatCanBeSaved.ExploitsWindow.Api.CreateOptionsButton({
         Name = "Dupe",
         HoverText = "exploits fortune enchant",
         Function = function(calling)
@@ -2045,7 +2045,7 @@ run(function()
 	   }
 	local function addEnchants()
 	end
-    enchantexploit = GuiLibrary.ObjectsThatCanBeSaved.UtilityWindow.Api.CreateOptionsButton({
+    enchantexploit = GuiLibrary.ObjectsThatCanBeSaved.ExploitsWindow.Api.CreateOptionsButton({
         Name = 'EnchantExploit',
         HoverText = 'Gives you all enchants.',
         Function = function(calling)
@@ -2070,8 +2070,8 @@ end)
 run(function() 
 	local MelodyGodmode = {Enabled = true}
 
-	MelodyExploit = GuiLibrary.ObjectsThatCanBeSaved.UtilityWindow.Api.CreateOptionsButton({ 
-		Name = "MelodyExploit",
+	MelodyExploit = GuiLibrary.ObjectsThatCanBeSaved.ExploitsWindow.Api.CreateOptionsButton({ 
+		Name = "MelodyGodmode",
 		Function = function(callback)
 			if callback then
 				RunLoops:BindToHeartbeat("melody",function()
@@ -2730,7 +2730,7 @@ run(function()
 		end
 	end)
 
-	GrappleExploit = GuiLibrary.ObjectsThatCanBeSaved.BlatantWindow.Api.CreateOptionsButton({
+	GrappleExploit = GuiLibrary.ObjectsThatCanBeSaved.ExploitsWindow.Api.CreateOptionsButton({
 		Name = "GrappleExploit",
 		Function = function(callback)
 			if callback then
