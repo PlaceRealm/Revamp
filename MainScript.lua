@@ -351,6 +351,7 @@ GUI.CreateButton({
 GUI.CreateButton({
 	Name = "Exploits",
 	Function = function(callback) Exploits.SetVisible(callback) end,
+	Icon = "vape/assets/WorldIcon.png",							
 	IconSize = 16
 })
 GUI.CreateDivider("MISC")
@@ -1582,8 +1583,8 @@ local windowSortOrder = {
 	RenderButton = 3,
 	UtilityButton = 4,
 	WorldButton = 5,
-	FriendsButton = 6,
-	ExploitsButton = 7,																																			
+	ExploitsButton = 6,
+	FriendsButton = 7,																																			
 	TargetsButton = 8,
 	ProfilesButton = 9
 }
@@ -1908,8 +1909,8 @@ GUISettings.CreateButton2({
 			RenderWindow = 4,
 			UtilityWindow = 5,
 			WorldWindow = 6,
-			FriendsWindow = 7,
-			ExploitsWindow = 8,																																															
+			ExploitsWindow = 7,																																														
+			FriendsWindow = 8,																																															
 			TargetsWindow = 9,
 			ProfilesWindow = 10,
 			["Text GUICustomWindow"] = 11,
