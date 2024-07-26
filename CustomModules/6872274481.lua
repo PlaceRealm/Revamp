@@ -9375,7 +9375,7 @@ run(function()
 			end
 		end
 	end
-	HealthbarVisuals = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOptionsButton({
+	HealthbarVisuals = visual.Api.CreateOptionsButton({
 		Name = 'HealthbarVisuals',
 		HoverText = 'Customize the color of your healthbar.\nAdd \'<health>\' to your custom text dropdown (if custom text enabled) to insert your health.',
 		Function = function(calling)
@@ -9642,7 +9642,7 @@ run(function()
 		end)
 		return tweendata
 	end
-	DamageIndicator = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOptionsButton({
+	DamageIndicator = visual.Api.CreateOptionsButton({
 		Name = 'CustomHitText',
 		HoverText = 'changes hit text.',
 		Function = function(calling)
@@ -9788,7 +9788,7 @@ run(function()
 	local damagehighlightvisuals = {};
 	local highlightcolor = newcolor();
 	local highlightinvis = {Value = 4}
-	damagehighlightvisuals = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOptionsButton({
+	damagehighlightvisuals = visual.Api.CreateOptionsButton({
 		Name = 'HighlightVisuals',
 		HoverText = 'Changes the color of the damage highlight.',
 		Function = function(calling)
@@ -9814,6 +9814,7 @@ run(function()
 		Min = 0,
 		Max = 10,
 		Default = 4,
+		
 		Function = void
 	})
 end);
