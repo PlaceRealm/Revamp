@@ -9451,3 +9451,89 @@ run(function()
 		end
 	end)         
 end)
+
+run(function()
+	local JellyfishExploit = {Enabled = false}
+
+	JellyfishExploit = GuiLibrary.ObjectsThatCanBeSaved.ExploitsWindow.Api.CreateOptionsButton({
+		Name = "JellyfishExploit",
+		Function = function(callback)
+			if callback then 
+                task.spawn(function()
+                    repeat task.wait(0.2)
+                        local args = {
+                            [1] = "electrify_jellyfish"
+                        }
+
+                        game:GetService("ReplicatedStorage"):WaitForChild("events-@easy-games/game-core:shared/game-core-networking@getEvents.Events"):WaitForChild("useAbility"):FireServer(unpack(args))
+                    until (not JellyfishExploit.Enabled)
+                end)
+            end
+        end, 
+		HovorText = "Requires Marina kit to use"
+	})
+end)
+
+run(function() 
+	local invis = {};
+	local invisbaseparts = {};
+	local invisroot = {};
+	local invisrootcolor = {};
+	local invisanim = Instance.new('Animation');
+	local invisrenderstep;
+	local invistask;
+	local invshumanim;
+	local invisFunction = function()
+		pcall(task.wait(1))
+		pcall(task.cancel, invistask);
+		table.clear(invisbaseparts);
+		pcall(function() invisrenderstep:Disconnect() end);
+		repeat task.wait() until entityLibrary.isAlive;
+		for i,v in lplr.Character:GetDescendants() do 
+			if v.ClassName:lower():find('part') and v.CanCollide and v ~= lplr.Character.PrimaryPart then 
+				v.CanCollide = false;
+				table.insert(invisbaseparts, v);
+			end 
+		end
+		invisrenderstep = runService.Stepped:Connect(function()
+			for i,v in invisbaseparts do 
+				v.CanCollide = false;
+			end
+		end);
+		table.insert(invis.Connections, invisrenderstep);
+		invisanim.AnimationId = 'rbxassetid://11335949902';
+		local anim = lplr.Character.Humanoid.Animator:LoadAnimation(invisanim);
+		invishumanim = anim;
+		repeat 
+			task.wait()
+			if GuiLibrary.ObjectsThatCanBeSaved.AnimationPlayerOptionsButton.Api.Enabled then 
+				GuiLibrary.ObjectsThatCanBeSaved.AnimationPlayerOptionsButton.Api.ToggleButton();
+			end
+			if entityLibrary.isAlive == false or not isnetworkowner(lplr.Character.PrimaryPart) or not invis.Enabled then 
+				pcall(function() 
+					anim:AdjustSpeed(0);
+					anim:Stop() 
+				end);
+				continue
+			end
+			lplr.Character.PrimaryPart.Transparency = 0.6;
+			anim:Play(0.1, 9e9, 0.1);
+		until (not invis.Enabled)
+	end;
+	invis = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOptionsButton({
+		Name = 'Invisibility',
+		HoverText = 'credits: render',
+		Function = function(calling)
+			if calling then 
+				invistask = task.spawn(invisFunction);
+				table.insert(invis.Connections, lplr.CharacterAdded:Connect(invisFunction))
+			else 
+				pcall(function()
+					invishumanim:AdjustSpeed(0);
+					invishumanim:Stop();
+				end);
+				pcall(task.cancel, invistask)
+			end
+		end
+	})
+end)
