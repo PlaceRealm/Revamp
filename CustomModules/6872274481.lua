@@ -9521,7 +9521,7 @@ run(function()
 	end;
 	invis = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOptionsButton({
 		Name = 'Invisibility',
-		HoverText = 'Plays an animation which makes it harder\nfor targets to see you.',
+		HoverText = 'credits: render',
 		Function = function(calling)
 			if calling then 
 				invistask = task.spawn(invisFunction);
