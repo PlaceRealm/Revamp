@@ -2070,7 +2070,7 @@ end)
 run(function() 
 	local MelodyGodmode = {Enabled = true}
 
-	MelodyExploit = GuiLibrary.ObjectsThatCanBeSaved.ExploitsWindow.Api.CreateOptionsButton({ 
+	MelodyGodmode = GuiLibrary.ObjectsThatCanBeSaved.ExploitsWindow.Api.CreateOptionsButton({ 
 		Name = "MelodyGodmode",
 		Function = function(callback)
 			if callback then
