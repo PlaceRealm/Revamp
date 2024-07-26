@@ -3066,7 +3066,7 @@ run(function()
 	local oldViewmodelAnimation = function() end
 	local oldPlaySound = function() end
 	local originalArmC0 = nil
-	local killauracurrentanim
+	local killauracurrentanim = PistonwareBlock
 	local animationdelay = tick()
 
 	local function getStrength(plr)
