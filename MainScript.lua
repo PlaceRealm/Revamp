@@ -1583,8 +1583,9 @@ local windowSortOrder = {
 	UtilityButton = 4,
 	WorldButton = 5,
 	FriendsButton = 6,
-	TargetsButton = 7,
-	ProfilesButton = 8
+	ExploitsButton = 7,																																			
+	TargetsButton = 8,
+	ProfilesButton = 9
 }
 local windowSortOrder2 = {"Combat", "Blatant", "Render", "Utility", "World"}
 
@@ -1908,11 +1909,12 @@ GUISettings.CreateButton2({
 			UtilityWindow = 5,
 			WorldWindow = 6,
 			FriendsWindow = 7,
-			TargetsWindow = 8,
-			ProfilesWindow = 9,
-			["Text GUICustomWindow"] = 10,
-			TargetInfoCustomWindow = 11,
-			RadarCustomWindow = 12,
+			ExploitsWindow = 8,																																															
+			TargetsWindow = 9,
+			ProfilesWindow = 10,
+			["Text GUICustomWindow"] = 11,
+			TargetInfoCustomWindow = 12,
+			RadarCustomWindow = 13,
 		}
 		local storedpos = {}
 		local num = 6
