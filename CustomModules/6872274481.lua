@@ -9375,7 +9375,7 @@ run(function()
 			end
 		end
 	end
-	HealthbarVisuals = render.Api.CreateOptionsButton({
+	HealthbarVisuals = RenderWindow.Api.CreateOptionsButton({
 		Name = 'HealthbarVisuals',
 		HoverText = 'Customize the color of your healthbar.\nAdd \'<health>\' to your custom text dropdown (if custom text enabled) to insert your health.',
 		Function = function(calling)
@@ -9642,7 +9642,7 @@ run(function()
 		end)
 		return tweendata
 	end
-	DamageIndicator = render.Api.CreateOptionsButton({
+	DamageIndicator = RenderWindow.Api.CreateOptionsButton({
 		Name = 'CustomHitText',
 		HoverText = 'changes hit text.',
 		Function = function(calling)
@@ -9788,7 +9788,7 @@ run(function()
 	local damagehighlightvisuals = {};
 	local highlightcolor = newcolor();
 	local highlightinvis = {Value = 4}
-	damagehighlightvisuals = render.Api.CreateOptionsButton({
+	damagehighlightvisuals = RenderWindow.Api.CreateOptionsButton({
 		Name = 'HighlightVisuals',
 		HoverText = 'Changes the color of the damage highlight.',
 		Function = function(calling)
