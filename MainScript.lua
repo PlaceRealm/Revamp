@@ -32,7 +32,6 @@ local vapeAssetTable = {
 	["vape/assets/CombatIcon.png"] = "rbxassetid://13350770192",
 	["vape/assets/DownArrow.png"] = "rbxassetid://13350770749",
 	["vape/assets/ExitIcon1.png"] = "rbxassetid://13350771140",
-	["vape/assets/FriendsIcon.png"] = "rbxassetid://13350771464",
 	["vape/assets/HoverArrow.png"] = "rbxassetid://13350772201",
 	["vape/assets/HoverArrow2.png"] = "rbxassetid://13350772588",
 	["vape/assets/HoverArrow3.png"] = "rbxassetid://13350773014",
@@ -44,11 +43,9 @@ local vapeAssetTable = {
 	["vape/assets/MoreButton2.png"] = "rbxassetid://13350775731",
 	["vape/assets/MoreButton3.png"] = "rbxassetid://13350776241",
 	["vape/assets/NotificationBackground.png"] = "rbxassetid://13350776706",
-	["vape/assets/NotificationBar.png"] = "rbxassetid://13350777235",
-	["vape/assets/OnlineProfilesButton.png"] = "rbxassetid://13350777717",
+	["vape/assets/NotificationBar.png"] = "rbxassetid://13350777235",,
 	["vape/assets/PencilIcon.png"] = "rbxassetid://13350778187",
 	["vape/assets/PinButton.png"] = "rbxassetid://13350778654",
-	["vape/assets/ProfilesIcon.png"] = "rbxassetid://13350779149",
 	["vape/assets/RadarIcon1.png"] = "rbxassetid://13350779545",
 	["vape/assets/RadarIcon2.png"] = "rbxassetid://13350779992",
 	["vape/assets/RainbowIcon1.png"] = "rbxassetid://13350780571",
@@ -1041,51 +1038,7 @@ TeamsByColorToggle = ModuleSettings.CreateToggle({
 	Default = true,
 	HoverText = "Ignore players on your team designated by the game"
 })
-TeamsByColorToggle.Refresh = Instance.new("BindableEvent")
-local MiddleClickInput
-ModuleSettings.CreateToggle({
-	Name = "MiddleClick friends",
-	Function = function(callback)
-		if callback then
-			MiddleClickInput = inputService.InputBegan:Connect(function(input1)
-				if input1.UserInputType == Enum.UserInputType.MouseButton3 then
-					local entityLibrary = shared.vapeentity
-					if entityLibrary then
-						local rayparams = RaycastParams.new()
-						rayparams.FilterType = Enum.RaycastFilterType.Whitelist
-						local chars = {}
-						for i,v in pairs(entityLibrary.entityList) do
-							table.insert(chars, v.Character)
-						end
-						rayparams.FilterDescendantsInstances = chars
-						local mouseunit = playersService.LocalPlayer:GetMouse().UnitRay
-						local ray = workspace:Raycast(mouseunit.Origin, mouseunit.Direction * 10000, rayparams)
-						if ray then
-							for i,v in pairs(entityLibrary.entityList) do
-								if ray.Instance:IsDescendantOf(v.Character) then
-									local found = table.find(FriendsTextList.ObjectList, v.Player.Name)
-									if not found then
-										table.insert(FriendsTextList.ObjectList, v.Player.Name)
-										table.insert(FriendsTextList.ObjectListEnabled, true)
-										FriendsTextList.RefreshValues(FriendsTextList.ObjectList)
-									else
-										table.remove(FriendsTextList.ObjectList, found)
-										table.remove(FriendsTextList.ObjectListEnabled, found)
-										FriendsTextList.RefreshValues(FriendsTextList.ObjectList)
-									end
-									break
-								end
-							end
-						end
-					end
-				end
-			end)
-		else
-			if MiddleClickInput then MiddleClickInput:Disconnect() end
-		end
-	end,
-	HoverText = "Click middle mouse button to add the player you are hovering over as a friend"
-})
+																							
 ModuleSettings.CreateToggle({
 	Name = "Lobby Check",
 	Function = function() end,
@@ -1105,10 +1058,7 @@ local windowSortOrder = {
 	BlatantButton = 2,
 	RenderButton = 3,
 	UtilityButton = 4,
-	WorldButton = 5,
-	FriendsButton = 6,																																			
-	TargetsButton = 7,
-	ProfilesButton = 8
+	WorldButton = 5,																																			
 }
 local windowSortOrder2 = {"Combat", "Blatant", "Render", "Utility", "World"}
 
@@ -1431,12 +1381,9 @@ GUISettings.CreateButton2({
 			RenderWindow = 4,
 			UtilityWindow = 5,
 			WorldWindow = 6,																																														
-			FriendsWindow = 7,																																															
-			TargetsWindow = 8,
-			ProfilesWindow = 9,
-			["Text GUICustomWindow"] = 10,
-			TargetInfoCustomWindow = 11,
-			RadarCustomWindow = 12,
+			["Text GUICustomWindow"] = 7,
+			TargetInfoCustomWindow = 8,
+			RadarCustomWindow = 9,
 		}
 		local storedpos = {}
 		local num = 6
