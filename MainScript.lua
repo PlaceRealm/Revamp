@@ -2003,3 +2003,214 @@ if shared.VapeIndependent then
 else
 	loadVape()
 end
+
+run(function()
+	local HotbarMods = {}
+	local HotbarRounding = {}
+	local HotbarHideSlotIcons = {}
+	local HotbarSlotNumberColorToggle = {}
+	local HotbarRoundRadius = {Value = 8}
+	local hotbarsloticons = {}
+	local hotbarobjects = {}
+	local function hotbarFunction()
+		local inventoryicons = ({pcall(function() return lplr.PlayerGui.hotbar['1'].ItemsHotbar end)})[2]
+		if inventoryicons and type(inventoryicons) == 'userdata' then
+			for i,v in next, inventoryicons:GetChildren() do 
+				local sloticon = ({pcall(function() return v:FindFirstChildWhichIsA('ImageButton'):FindFirstChildWhichIsA('TextLabel') end)})[2]
+				if type(sloticon) ~= 'userdata' then 
+					continue
+				end
+				if HotbarRounding.Enabled then 
+					local uicorner = Instance.new('UICorner')
+					uicorner.Parent = sloticon.Parent
+					uicorner.CornerRadius = UDim.new(0, HotbarRoundRadius.Value)
+					table.insert(hotbarobjects, uicorner)
+				end
+				if HotbarHideSlotIcons.Enabled then 
+					sloticon.Visible = false 
+				end
+				table.insert(hotbarsloticons, sloticon)
+			end 
+		end
+	end
+	HotbarMods = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOptionsButton({
+		Name = 'HotbarMods',
+		HoverText = 'Add customization to your hotbar.',
+		Function = function(calling)
+			if calling then 
+				task.spawn(function()
+					table.insert(HotbarMods.Connections, lplr.PlayerGui.DescendantAdded:Connect(function(v)
+						if v.Name == 'hotbar' then
+							hotbarFunction()
+						end
+					end))
+					hotbarFunction()
+				end)
+			else
+				for i,v in hotbarsloticons do 
+					pcall(function() v.Visible = false end)
+				end
+				for i,v in hotbarobjects do
+					pcall(function() v:Destroy() end)
+				end
+				table.clear(hotbarobjects)
+				table.clear(hotbarsloticons)
+			end
+		end
+	})
+	HotbarRounding = HotbarMods.CreateToggle({
+		Name = 'Rounding',
+		Function = function(calling)
+			pcall(function() HotbarRoundRadius.Object.Visible = calling end)
+			if HotbarMods.Enabled then 
+				HotbarMods.ToggleButton(false)
+				HotbarMods.ToggleButton(false)
+			end
+		end
+	})
+	HotbarRoundRadius = HotbarMods.CreateSlider({
+		Name = 'Corner Radius',
+		Min = 1,
+		Max = 20,
+		Function = function(calling)
+			for i,v in next, hotbarobjects do 
+				pcall(function() v.CornerRadius = UDim.new(0, calling) end)
+			end
+		end
+	})
+	HotbarRoundRadius.Object.Visible = false
+end)		
+
+local PlayerTP = {}
+	local PlayerTPTeleport = {Value = 'Respawn'}
+	local PlayerTPSort = {Value = 'Distance'}
+	local PlayerTPMethod = {Value = 'Linear'}
+	local PlayerTPAutoSpeed = {}
+	local PlayerTPSpeed = {Value = 200}
+	local PlayerTPTarget = {Value = ''}
+	local playertween
+	local oldmovefunc
+	local bypassmethods = {
+		Respawn = function() 
+			if isEnabled('InfiniteFly') then 
+				return 
+			end
+			if not canRespawn() then 
+				return 
+			end
+			for i = 1, 30 do 
+				if isAlive(lplr, true) and lplr.Character.Humanoid:GetState() ~= Enum.HumanoidStateType.Dead then
+					lplr.Character.Humanoid:TakeDamage(lplr.Character.Humanoid.Health)
+					lplr.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Dead)
+				end
+			end
+			lplr.CharacterAdded:Wait()
+			repeat task.wait() until isAlive(lplr, true) 
+			task.wait(0.1)
+			local target = GetTarget(nil, PlayerTPSort.Value == 'Health', true)
+			if target.RootPart == nil or not PlayerTP.Enabled then 
+				return
+			end
+			local localposition = lplr.Character.HumanoidRootPart.Position
+			local tweenspeed = (PlayerTPAutoSpeed.Enabled and ((target.RootPart.Position - localposition).Magnitude / 470) + 0.001 * 2 or (PlayerTPSpeed.Value / 1000) + 0.1)
+			local tweenstyle = (PlayerTPAutoSpeed.Enabled and Enum.EasingStyle.Linear or Enum.EasingStyle[PlayerTPMethod.Value])
+			playertween = tweenService:Create(lplr.Character.HumanoidRootPart, TweenInfo.new(tweenspeed, tweenstyle), {CFrame = target.RootPart.CFrame}) 
+			playertween:Play() 
+			playertween.Completed:Wait()
+		end,
+		Instant = function() 
+			local target = GetTarget(nil, PlayerTPSort.Value == 'Health', true)
+			if target.RootPart == nil then 
+				return PlayerTP.ToggleButton()
+			end
+			lplr.Character.HumanoidRootPart.CFrame = (target.RootPart.CFrame + Vector3.new(0, 5, 0)) 
+			PlayerTP.ToggleButton()
+		end,
+		Recall = function()
+			if not isAlive(lplr, true) or lplr.Character.Humanoid.FloorMaterial == Enum.Material.Air then 
+				errorNotification('PlayerTP', 'Recall ability not available.', 7)
+				return 
+			end
+			if not bedwars.AbilityController:canUseAbility('recall') then 
+				errorNotification('PlayerTP', 'Recall ability not available.', 7)
+				return
+			end
+			pcall(function()
+				oldmovefunc = require(lplr.PlayerScripts.PlayerModule).controls.moveFunction 
+				require(lplr.PlayerScripts.PlayerModule).controls.moveFunction = function() end
+			end)
+			bedwars.AbilityController:useAbility('recall')
+			local teleported
+			table.insert(PlayerTP.Connections, lplr:GetAttributeChangedSignal('LastTeleported'):Connect(function() teleported = true end))
+			repeat task.wait() until teleported or not PlayerTP.Enabled or not isAlive(lplr, true) 
+			task.wait()
+			local target = GetTarget(nil, PlayerTPSort.Value == 'Health', true)
+			if target.RootPart == nil or not isAlive(lplr, true) or not PlayerTP.Enabled then 
+				return
+			end
+			local localposition = lplr.Character.HumanoidRootPart.Position
+			local tweenspeed = (PlayerTPAutoSpeed.Enabled and ((target.RootPart.Position - localposition).Magnitude / 1000) + 0.001 or (PlayerTPSpeed.Value / 1000) + 0.1)
+			local tweenstyle = (PlayerTPAutoSpeed.Enabled and Enum.EasingStyle.Linear or Enum.EasingStyle[PlayerTPMethod.Value])
+			playertween = tweenService:Create(lplr.Character.HumanoidRootPart, TweenInfo.new(tweenspeed, tweenstyle), {CFrame = target.RootPart.CFrame}) 
+			playertween:Play() 
+			playertween.Completed:Wait()
+		end
+	}
+	PlayerTP = GuiLibrary.ObjectsThatCanBeSaved.WorldWindow.Api.CreateOptionsButton({
+		Name = 'PlayerTP',
+		HoverText = 'Tweens you to a nearby target.',
+		Function = function(calling)
+			if calling then 
+				if isEnabled('FullDisabler') and isAlive(lplr, true) then 
+					return bypassmethods.Instant()
+				end
+				if isEnabled('FullDisabler') then 
+					return PlayerTP.ToggleButton()
+				end
+				if GetTarget(nil, PlayerTPSort.Value == 'Health', true).RootPart and shared.VapeFullyLoaded then 
+					bypassmethods[isAlive() and PlayerTPTeleport.Value or 'Respawn']() 
+				end
+				if PlayerTP.Enabled then 
+					PlayerTP.ToggleButton()
+				end
+			else
+				pcall(function() playertween:Disconnect() end)
+				if oldmovefunc then 
+					pcall(function() require(lplr.PlayerScripts.PlayerModule).controls.moveFunction = oldmovefunc end)
+				end
+				oldmovefunc = nil
+			end
+		end
+	})
+	PlayerTPTeleport = PlayerTP.CreateDropdown({
+		Name = 'Teleport Method',
+		List = {'Respawn', 'Recall'},
+		Function = function() end
+	})
+	PlayerTPAutoSpeed = PlayerTP.CreateToggle({
+		Name = 'Auto Speed',
+		HoverText = 'Automatically uses a "good" tween speed.',
+		Default = true,
+		Function = function(calling) 
+			if calling then 
+				pcall(function() PlayerTPSpeed.Object.Visible = false end) 
+			else 
+				pcall(function() PlayerTPSpeed.Object.Visible = true end) 
+			end
+		end
+	})
+	PlayerTPSpeed = PlayerTP.CreateSlider({
+		Name = 'Tween Speed',
+		Min = 20, 
+		Max = 350,
+		Default = 200,
+		Function = function() end
+	})
+	PlayerTPMethod = PlayerTP.CreateDropdown({
+		Name = 'Teleport Method',
+		List = GetEnumItems('EasingStyle'),
+		Function = function() end
+	})
+	PlayerTPSpeed.Object.Visible = false	
+	    })
+      end)																																											
