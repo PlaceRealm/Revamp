@@ -2009,69 +2009,11 @@ run(function()
 	})
 end)
 
-run(function() 
-    local DupeExploit = {};
-	local ftick = 0
-    RichExploit = GuiLibrary.ObjectsThatCanBeSaved.ExploitsWindow.Api.CreateOptionsButton({
-        Name = "Dupe",
-        HoverText = "exploits fortune enchant",
-        Function = function(calling)
-            if calling then 
-				RunLoops:BindToStepped("fortune", function(testing)
-					ftick = ftick + 1
-					game:GetService('ReplicatedStorage'):WaitForChild('rbxts_include'):WaitForChild('node_modules'):WaitForChild('@rbxts'):WaitForChild('net'):WaitForChild('out'):WaitForChild('_NetManaged'):WaitForChild('RequestFortuneCashOut')
-					:FireServer({
-						statusEffectType = "fortune_1",
-						fortuneStacks = 9e9
-					})
-					ftick = 0
-				end)
-			else
-				RunLoops:UnbindFromRenderStep('fortune')
-            end
-        end
-    })
-end) 
-
-run(function()
-    local enchantexploit = {};
-    local enchantexploit = {}
-	local enchantnum = 0
-	local et = 0
-    local effects = {
-        "fire_3", "forest_3", "void_3", "static_3", "updraft_2", 
-        "shield_gen_3", "anti_knockback_2", "rapid_regen_3", "execute_3", 
-        "wind_3", "plunder_2", "critical_strike_3", "volley_3", 
-        "grounded_3", "clingy_3", "life_steal_3", "fortune_1", "fortune_2", "fortune_3"
-	   }
-	local function addEnchants()
-	end
-    enchantexploit = GuiLibrary.ObjectsThatCanBeSaved.ExploitsWindow.Api.CreateOptionsButton({
-        Name = 'EnchantExploit',
-        HoverText = 'Gives you all enchants.',
-        Function = function(calling)
-            if calling then 
-				et = 0
-				RunLoops:BindToStepped("enchant",function()
-					et = et + 1
-					if et == 45 then
-						for i,v in effects do 
-							bedwars.Client:Get("RequestFortuneDoubleDown").instance:FireServer({statusEffectType = v})
-						end
-						et = 0
-					end
-				end)
-			else
-				RunLoops:UnbindFromStepped("enchant")
-            end
-        end
-    })
-end) 
 
 run(function() 
 	local MelodyGodmode = {Enabled = true}
 
-	MelodyGodmode = GuiLibrary.ObjectsThatCanBeSaved.ExploitsWindow.Api.CreateOptionsButton({ 
+	MelodyGodmode = GuiLibrary.ObjectsThatCanBeSaved.BlatantWindow.Api.CreateOptionsButton({ 
 		Name = "MelodyGodmode",
 		Function = function(callback)
 			if callback then
@@ -2731,7 +2673,7 @@ run(function()
 		end
 	end)
 
-	GrappleExploit = GuiLibrary.ObjectsThatCanBeSaved.ExploitsWindow.Api.CreateOptionsButton({
+	GrappleExploit = GuiLibrary.ObjectsThatCanBeSaved.BlatantWindow.Api.CreateOptionsButton({
 		Name = "GrappleExploit",
 		Function = function(callback)
 			if callback then
@@ -9448,7 +9390,7 @@ end)
 run(function()
 	local JellyfishExploit = {Enabled = false}
 
-	JellyfishExploit = GuiLibrary.ObjectsThatCanBeSaved.ExploitsWindow.Api.CreateOptionsButton({
+	JellyfishExploit = GuiLibrary.ObjectsThatCanBeSaved.UtilityWindow.Api.CreateOptionsButton({
 		Name = "JellyfishExploit",
 		Function = function(callback)
 			if callback then 
