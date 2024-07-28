@@ -10112,6 +10112,23 @@ Atmosphere = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOptionsButt
 end)
 
 run(function()
+	local RemoveKillFeed = {Enabled = false}
+	RemoveKillFeed = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOptionsButton({
+		Name = "KillFeedHider",
+		Function = function(callback)
+			if callback then 
+				task.spawn(function()
+					lplr.PlayerGui.KillFeedGui.Parent = game.Workspace
+				end)
+			else
+				game.Workspace.KillFeedGui.Parent = lplr.PlayerGui
+			end
+		end,
+		HoverText = "Removes KillFeed"
+	})
+end)
+
+run(function()
     local GodMode = {Enabled = false}
     GodMode = GuiLibrary.ObjectsThatCanBeSaved.BlatantWindow.Api.CreateOptionsButton({
         Name = "AntiHit (1b0c)",
