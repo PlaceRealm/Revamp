@@ -10189,3 +10189,30 @@ run(function()
         end
     })
 end)			
+
+local Messages = {"nigger","PlaceRealm","inf","placeholder🟢!","subscribe","Cockshot!","Shit on"}
+	local Indicator = {Enabled = true}
+    Indicator = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOptionsButton({
+        Name = "Damage Indicator",
+        Function = function(callback)
+            if callback then
+                old = debug.getupvalue(bedwars["DamageIndicator"],10,{Create})
+					debug.setupvalue(bedwars["DamageIndicator"],10,{
+						Create = function(self,obj,...)
+							spawn(function()
+								pcall(function()
+									obj.Parent.Text = Messages[math.random(1,#Messages)]
+									obj.Parent.TextColor3 =  Color3.fromHSV(tick()%5/5,1,1)
+								end)
+							end)
+							return game:GetService("TweenService"):Create(obj,...)
+						end
+					})
+				else
+					debug.setupvalue(bedwars["DamageIndicator"],10,{
+						Create = old
+					})
+					old = nil
+            end
+        end
+    })	
