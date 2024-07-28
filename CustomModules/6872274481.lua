@@ -10175,14 +10175,13 @@ local ChatBreaker = GuiLibrary.ObjectsThatCanBeSaved.WorldWindow.Api.CreateOptio
 })																																																																																																																																																																																																																																																														
 local ChatBypass = GuiLibrary.ObjectsThatCanBeSaved.WorldWindow.Api.CreateOptionsButton({
     Name = "Chat Bypass",
-    HoverText = "makes me cum"
+    HoverText = "makes me cum",
     Function = function(callback) 
         if callback then
        loadstring(game:HttpGet("https://raw.githubusercontent.com/SkireScripts/Ouxie/main/Projects/simplebypass.lua"))()
         end
     end,
-    Default = false,
-
+    Default = false
 })
 
 run(function()
