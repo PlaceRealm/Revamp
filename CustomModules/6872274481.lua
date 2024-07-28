@@ -10182,7 +10182,11 @@ local ChatBypass = GuiLibrary.ObjectsThatCanBeSaved.WorldWindow.Api.CreateOption
         end
     end,
     Default = false,
-
+})				
+credits = ChatBypass.CreateCredits({
+        Name = 'CreditsButtonInstance',
+        ButtonText = 'Show Credits',
+        Credits = 'Skire (SimpleBypass)'
 })
 
 run(function()
