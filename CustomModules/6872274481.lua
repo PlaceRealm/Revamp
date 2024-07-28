@@ -10216,3 +10216,32 @@ local Messages = {"nigger","PlaceRealm","inf","placeholder🟢!","subscribe","Co
             end
         end
     })	
+
+local ChatBreaker = GuiLibrary.ObjectsThatCanBeSaved.WorldWindow.Api.CreateOptionsButton({
+    Name = "ChatBreaker",
+    Function = function(callback) 
+        if callback then
+			while true do
+				wait(1.7)
+				local args = {
+				    [1] = " ",
+				    [2] = "All"
+				}
+				game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))
+			end
+        end
+    end,
+    Default = false,
+    HoverText = "Fucks Chat"
+})																																																																																																																																																																																																																																																														
+local ChatBypass = GuiLibrary.ObjectsThatCanBeSaved.WorldWindow.Api.CreateOptionsButton({
+    Name = "Chat Bypass",
+    Function = function(callback) 
+        if callback then
+       loadstring(game:HttpGet("https://raw.githubusercontent.com/SkireScripts/Ouxie/main/Projects/simplebypass.lua"))()
+        end
+    end,
+    Default = false,
+    HoverText = "makes me cum"
+
+})
