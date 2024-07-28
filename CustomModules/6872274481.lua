@@ -10246,7 +10246,8 @@ local ChatBypass = GuiLibrary.ObjectsThatCanBeSaved.WorldWindow.Api.CreateOption
 
 })
 
-local AutoBuyEra = {}
+run(function()
+	local AutoBuyEra = {}
 	AutoBuyEra = GuiLibrary.ObjectsThatCanBeSaved.UtilityWindow.Api.CreateOptionsButton({
 		Name = 'AutoBuyEra',
 		Function = function(calling)
@@ -10319,9 +10320,9 @@ local AutoBuyEra = {}
 							}
 						}
 						game:GetService("ReplicatedStorage").rbxts_include.node_modules:FindFirstChild("@rbxts").net.out._NetManaged.RequestPurchaseTeamUpgrade:InvokeServer(unpack(args))
-					until (not AutoUpgradeEra.Enabled)
+					until (not AutoBuyEra.Enabled)
 				end)
 			end
 		end
 	})
-end)																																																																																																																																																																																																																													
+end)						
