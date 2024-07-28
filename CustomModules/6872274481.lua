@@ -10245,3 +10245,83 @@ local ChatBypass = GuiLibrary.ObjectsThatCanBeSaved.WorldWindow.Api.CreateOption
     HoverText = "makes me cum"
 
 })
+
+local AutoBuyEra = {}
+	AutoBuyEra = GuiLibrary.ObjectsThatCanBeSaved.UtilityWindow.Api.CreateOptionsButton({
+		Name = 'AutoBuyEra',
+		Function = function(calling)
+			if calling then 
+				task.spawn(function()
+					repeat task.wait()
+						local args = {
+							[1] = {
+								["era"] = "iron_era"
+							}
+						}
+						game:GetService("ReplicatedStorage"):WaitForChild("rbxts_include"):WaitForChild("node_modules"):WaitForChild("@rbxts"):WaitForChild("net"):WaitForChild("out"):WaitForChild("_NetManaged"):WaitForChild("RequestPurchaseEra"):InvokeServer(unpack(args))
+						local args = {
+							[1] = {
+								["era"] = "diamond_era"
+							}
+						}						
+						game:GetService("ReplicatedStorage"):WaitForChild("rbxts_include"):WaitForChild("node_modules"):WaitForChild("@rbxts"):WaitForChild("net"):WaitForChild("out"):WaitForChild("_NetManaged"):WaitForChild("RequestPurchaseEra"):InvokeServer(unpack(args))
+						local args = {
+							[1] = {
+								["era"] = "emerald_era"
+							}
+						}					
+						game:GetService("ReplicatedStorage"):WaitForChild("rbxts_include"):WaitForChild("node_modules"):WaitForChild("@rbxts"):WaitForChild("net"):WaitForChild("out"):WaitForChild("_NetManaged"):WaitForChild("RequestPurchaseEra"):InvokeServer(unpack(args))
+						local args = {
+							[1] = {
+								["upgrade"] = "altar_i"
+							}
+						}
+						game:GetService("ReplicatedStorage").rbxts_include.node_modules:FindFirstChild("@rbxts").net.out._NetManaged.RequestPurchaseTeamUpgrade:InvokeServer(unpack(args))
+						local args = {
+							[1] = {
+								["upgrade"] = "bed_defense_i"
+							}
+						}
+						game:GetService("ReplicatedStorage").rbxts_include.node_modules:FindFirstChild("@rbxts").net.out._NetManaged.RequestPurchaseTeamUpgrade:InvokeServer(unpack(args))						
+						local args = {
+							[1] = {
+								["upgrade"] = "destruction_i"
+							}
+						}
+						game:GetService("ReplicatedStorage").rbxts_include.node_modules:FindFirstChild("@rbxts").net.out._NetManaged.RequestPurchaseTeamUpgrade:InvokeServer(unpack(args))
+						local args = {
+							[1] = {
+								["upgrade"] = "magic_i"
+							}
+						}
+						game:GetService("ReplicatedStorage").rbxts_include.node_modules:FindFirstChild("@rbxts").net.out._NetManaged.RequestPurchaseTeamUpgrade:InvokeServer(unpack(args))
+						local args = {
+							[1] = {
+								["upgrade"] = "altar_ii"
+							}
+						}
+						game:GetService("ReplicatedStorage").rbxts_include.node_modules:FindFirstChild("@rbxts").net.out._NetManaged.RequestPurchaseTeamUpgrade:InvokeServer(unpack(args))
+						local args = {
+							[1] = {
+								["upgrade"] = "destruction_ii"
+							}
+						}
+						game:GetService("ReplicatedStorage").rbxts_include.node_modules:FindFirstChild("@rbxts").net.out._NetManaged.RequestPurchaseTeamUpgrade:InvokeServer(unpack(args))
+						local args = {
+							[1] = {
+								["upgrade"] = "magic_ii"
+							}
+						}
+						game:GetService("ReplicatedStorage").rbxts_include.node_modules:FindFirstChild("@rbxts").net.out._NetManaged.RequestPurchaseTeamUpgrade:InvokeServer(unpack(args))
+						local args = {
+							[1] = {
+								["upgrade"] = "altar_iii"
+							}
+						}
+						game:GetService("ReplicatedStorage").rbxts_include.node_modules:FindFirstChild("@rbxts").net.out._NetManaged.RequestPurchaseTeamUpgrade:InvokeServer(unpack(args))
+					until (not AutoUpgradeEra.Enabled)
+				end)
+			end
+		end
+	})
+end)																																																																																																																																																																																																																													
