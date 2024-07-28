@@ -10182,6 +10182,7 @@ local ChatBypass = GuiLibrary.ObjectsThatCanBeSaved.WorldWindow.Api.CreateOption
         end
     end,
     Default = false,
+
 })
 
 run(function()
