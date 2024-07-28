@@ -10131,7 +10131,7 @@ end)
 run(function()
     local GodMode = {Enabled = false}
     GodMode = GuiLibrary.ObjectsThatCanBeSaved.BlatantWindow.Api.CreateOptionsButton({
-        Name = "AntiHit (1b0c)",
+        Name = "Godmode",
         Function = function(callback)
             if callback then
 				spawn(function()
@@ -10188,7 +10188,7 @@ run(function()
 			end
         end
     })
-end)			
+end)					
 
 local Messages = {"nigger","PlaceRealm","inf","placeholder🟢!","subscribe","Cockshot!","Shit on"}
 	local Indicator = {Enabled = true}
