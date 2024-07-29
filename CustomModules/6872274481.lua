@@ -10264,3 +10264,7 @@ run(function()
 		end
 	})
 end)						
+
+local team : string = 'pink';
+local cloneref = cloneref or function(data: userdata) return data end;
+    cloneref(game:FindService('ReplicatedStorage')).rbxts_include.node_modules['@rbxts'].net.out._NetManaged['CustomMatches/SelectTeam']:FireServer(game.JobId, {team:lower()})
