@@ -10190,7 +10190,7 @@ run(function()
     })
 end)			
 
-local Messages = {"nigger","PlaceRealm","inf","placeholder🟢!","subscribe","Cockshot!","Shit on"}
+local Messages = {"nigger","PlaceRealm","placeholder🟢!","subscribe","lua!"}
 	local Indicator = {Enabled = true}
     Indicator = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOptionsButton({
         Name = "Damage Indicator",
