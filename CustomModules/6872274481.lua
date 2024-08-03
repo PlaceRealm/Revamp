@@ -10054,11 +10054,6 @@ local ChatBypass = GuiLibrary.ObjectsThatCanBeSaved.WorldWindow.Api.CreateOption
     end,
     Default = false,
 })				
-credits = ChatBypass.CreateCredits({
-        Name = 'CreditsButtonInstance',
-        ButtonText = 'Show Credits',
-        Credits = 'Skire (SimpleBypass)'
-})
 
 run(function()
 	local AutoBuyEra = {}
