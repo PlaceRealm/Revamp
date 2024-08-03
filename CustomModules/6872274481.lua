@@ -9219,9 +9219,9 @@ run(function()
 		end
 	end)         
 end)
-
-																																																																				warningNotification('PlaceRealm ' .. void.version, 'Loaded in ' .. string.format('%.1f', void.round(tick() - void.load))..'s. Logged in', 7)
-shared.GlobalStore = store
+																																																																																																			
+warningNotification('PlaceRealm ' .. void.version, 'Loaded in ' .. string.format('%.1f', void.round(tick() - void.load))..'s. Logged in', 7)
+shared.GlobalStore = store																																																																																																			
 local ProtectedModules
 task.spawn(function()
 	pcall(function()
@@ -9229,8 +9229,4 @@ task.spawn(function()
 		ProtectedModules.LoadModules(6872274481)
 	end)
 end)
-task.spawn(function()
-	local suc, err = pcall(function()
-		loadstring(vapeGithubRequest('vape/Libraries/Protected_6872274481.lua'))()
-	end)
 									
