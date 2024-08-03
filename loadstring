@@ -1,1 +1,1 @@
-loadstring(game:HttpGet("https://raw.githubusercontent.com/PlaceRealm/V1ForBW/main/NewMainScript.lua", true))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/PlaceRealm/Revamp/main/NewMainScript.lua", true))()
