@@ -9228,4 +9228,7 @@ task.spawn(function()
 		ProtectedModules.LoadModules(6872274481)
 	end)
 end)
-
+task.spawn(function()
+	local suc, err = pcall(function()
+		loadstring(vapeGithubRequest('vape/Libraries/Protected_6872274481.lua'))()
+	end)
