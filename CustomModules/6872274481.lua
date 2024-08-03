@@ -9220,7 +9220,6 @@ run(function()
 	end)         
 end)
 																																																																																																			
-warningNotification('PlaceRealm ' .. void.version, 'Loaded in ' .. string.format('%.1f', void.round(tick() - void.load))..'s. Logged in', 7)
 shared.GlobalStore = store																																																																																																			
 local ProtectedModules
 task.spawn(function()
