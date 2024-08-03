@@ -9246,7 +9246,7 @@ end)
 
 run(function()
 	local HotbarMods = {}
-	local HotbarRounding = {true}
+	local HotbarRounding = {}
 	local HotbarHideSlotIcons = {}
 	local HotbarSlotNumberColorToggle = {}
 	local HotbarRoundRadius = {Value = 8}
@@ -9695,7 +9695,7 @@ run(function()
 		skyobj.SkyboxRt = 'rbxassetid://1045964655'
 		skyobj.SkyboxUp = 'rbxassetid://1045962969'
 	end,
-	ZeroPrime = function()
+	Nigger = function()
 		skyobj.SkyboxBk = 'rbxassetid://14330565986'
 		skyobj.SkyboxDn = 'rbxassetid://14330586340'
 		skyobj.SkyboxFt = 'rbxassetid://14330572603'
