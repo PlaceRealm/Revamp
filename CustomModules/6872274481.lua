@@ -7541,8 +7541,8 @@ local ChatBypass = GuiLibrary.ObjectsThatCanBeSaved.WorldWindow.Api.CreateOption
        loadstring(game:HttpGet("https://raw.githubusercontent.com/SkireScripts/Ouxie/main/Projects/simplebypass.lua"))()
         end
     end,
-    Default = false,
-})				
+})										
+    Default = false,				
 credits = ChatBypass.CreateCredits({
         Name = 'CreditsButtonInstance',
         ButtonText = 'Show Credits',
