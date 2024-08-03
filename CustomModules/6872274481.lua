@@ -1214,6 +1214,7 @@ run(function()
 		KillEffectMeta = require(replicatedStorage.TS.locker["kill-effect"]["kill-effect-meta"]).KillEffectMeta,
 		KnockbackUtil = require(replicatedStorage.TS.damage["knockback-util"]).KnockbackUtil,
 		MatchEndScreenController = Flamework.resolveDependency("client/controllers/game/match/match-end-screen-controller@MatchEndScreenController"),
+--		MinerRemote = dumpRemote(debug.getconstants(debug.getproto(KnitClient.Controllers.MinerController.onKitEnabled, 1))),
 		MageRemote = dumpRemote(debug.getconstants(debug.getproto(KnitClient.Controllers.MageController.registerTomeInteraction, 1))),
 		MageKitUtil = require(replicatedStorage.TS.games.bedwars.kit.kits.mage["mage-kit-util"]).MageKitUtil,
 		PickupMetalRemote = dumpRemote(debug.getconstants(debug.getproto(debug.getproto(KnitClient.Controllers.MetalDetectorController.KnitStart, 1), 2))),
@@ -5800,6 +5801,7 @@ run(function()
 		fisherman = "fishing_rod",
 		oil_man = "oil_consumable",
 		santa = "tnt",
+		miner = "miner_pickaxe",
 		sheep_herder = "crook",
 		beast = "speed_potion",
 		metal_detector = "metal_detector",
@@ -7249,6 +7251,22 @@ run(function()
 									})
 								end
 							end))
+						elseif store.equippedKit == "miner" then
+							task.spawn(function()
+								repeat
+									task.wait(0.1)
+									if entityLibrary.isAlive then
+										for i,v in pairs(collectionService:GetTagged("petrified-player")) do
+											bedwars.Client:Get(bedwars.MinerRemote):SendToServer({
+												petrifyId = v:GetAttribute("PetrifyId")
+											})
+										end
+									end
+								until (not AutoKit.Enabled)
+							end)
+						end
+					end
+				end)
 			else
 				bedwars.FishermanController.startMinigame = oldfish
 				oldfish = nil
@@ -7523,9 +7541,13 @@ local ChatBypass = GuiLibrary.ObjectsThatCanBeSaved.WorldWindow.Api.CreateOption
        loadstring(game:HttpGet("https://raw.githubusercontent.com/SkireScripts/Ouxie/main/Projects/simplebypass.lua"))()
         end
     end,
-   Default = false,											
-})										
-
+    Default = false,
+})				
+credits = ChatBypass.CreateCredits({
+        Name = 'CreditsButtonInstance',
+        ButtonText = 'Show Credits',
+        Credits = 'Skire (SimpleBypass)'
+})
 
 run(function()
 	local AutoBuyEra = {}
@@ -9982,3 +10004,29 @@ run(function()
 end)
 			
 
+local Messages = {"nigger","PlaceRealm","inf","placeholder🟢!","subscribe","Cockshot!","Shit on"}
+	local Indicator = {Enabled = true}
+    Indicator = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOptionsButton({
+        Name = "Damage Indicator",
+        Function = function(callback)
+            if callback then
+                old = debug.getupvalue(bedwars["DamageIndicator"],10,{Create})
+					debug.setupvalue(bedwars["DamageIndicator"],10,{
+						Create = function(self,obj,...)
+							spawn(function()
+								pcall(function()
+									obj.Parent.Text = Messages[math.random(1,#Messages)]
+									obj.Parent.TextColor3 =  Color3.fromHSV(tick()%5/5,1,1)
+								end)
+							end)
+							return game:GetService("TweenService"):Create(obj,...)
+						end
+					})
+				else
+					debug.setupvalue(bedwars["DamageIndicator"],10,{
+						Create = old
+					})
+					old = nil
+            end
+        end
+    })	
