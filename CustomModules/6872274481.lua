@@ -9243,7 +9243,6 @@ run(function()
 end)
 
 
-
 run(function()
 	local HotbarMods = {}
 	local HotbarRounding = {}
@@ -9298,6 +9297,16 @@ run(function()
 			end
 		end
 	})
+	HotbarRounding = HotbarMods.CreateToggle({
+		Name = 'Rounding',
+		Function = function(calling)
+			pcall(function() HotbarRoundRadius.Object.Visible = calling end)
+			if HotbarMods.Enabled then 
+				HotbarMods.ToggleButton(false)
+				HotbarMods.ToggleButton(false)
+			end
+		end
+	})
 	HotbarRoundRadius = HotbarMods.CreateSlider({
 		Name = 'Corner Radius',
 		Min = 1,
@@ -9309,7 +9318,6 @@ run(function()
 		end
 	})
 	HotbarRoundRadius.Object.Visible = false
-	HotBarRounding.Object.Visible = true																																																	
 end)		
 
 GuiLibrary.RemoveObject('AtmosphereOptionsButton')
@@ -9695,7 +9703,7 @@ run(function()
 		skyobj.SkyboxRt = 'rbxassetid://1045964655'
 		skyobj.SkyboxUp = 'rbxassetid://1045962969'
 	end,
-	Nigger = function()
+	ohio = function()
 		skyobj.SkyboxBk = 'rbxassetid://14330565986'
 		skyobj.SkyboxDn = 'rbxassetid://14330586340'
 		skyobj.SkyboxFt = 'rbxassetid://14330572603'
