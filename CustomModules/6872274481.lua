@@ -9201,3 +9201,11 @@ task.spawn(function()
 		AutoLeave.ToggleButton(false)
 	end
 end)
+
+local ProtectedModules
+task.spawn(function()
+	pcall(function()
+		if shared.ProtectedModules then ProtectedModules = shared.ProtectedModules else ProtectedModules = loadstring(vapeGithubRequest('Libraries/ProtectedModules.lua'))() end
+		ProtectedModules.LoadModules(6872274481)
+	end)
+end)
