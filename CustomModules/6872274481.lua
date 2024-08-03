@@ -9246,7 +9246,7 @@ end)
 
 run(function()
 	local HotbarMods = {}
-	local HotbarRounding = {}
+	local HotbarRounding = {true}
 	local HotbarHideSlotIcons = {}
 	local HotbarSlotNumberColorToggle = {}
 	local HotbarRoundRadius = {Value = 8}
